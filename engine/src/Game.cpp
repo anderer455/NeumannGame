@@ -236,16 +236,20 @@ namespace engine
 				{
 					if (unitIsSelected && testPO->getOwner() == activePlayer)
 					{
+						
+						
 						pixelPos = sf::Mouse::getPosition(*m_window);
 						worldPos = m_window->mapPixelToCoords(pixelPos);
-						int x = worldPos.x / tileSize;
-						int y = worldPos.y / tileSize;
-						auto tile = m_gameMap->getTile(x, y);
-
-						if (testPO->getIsBuilding() == false)
+						if (worldPos.x >= 0 && worldPos.y >= 0 && worldPos.x < tileSize * (m_gameMap->getWidth()) && worldPos.y < tileSize * m_gameMap->getHeight())
 						{
-							if (worldPos.x >= 0 && worldPos.y >= 0 && worldPos.x < tileSize * (m_gameMap->getWidth()) && worldPos.y < tileSize * m_gameMap->getHeight())
+							changed = 1;
+							int x = worldPos.x / tileSize;
+							int y = worldPos.y / tileSize;
+							auto tile = m_gameMap->getTile(x, y);
+
+							if (testPO->getIsBuilding() == false)
 							{
+							
 								IObjectPtr otherTileUnit = nullptr;
 								auto enemy = activePlayer;
 								if (activePlayer == game::Ownership::Player1)

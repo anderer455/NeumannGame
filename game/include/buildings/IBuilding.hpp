@@ -29,7 +29,7 @@ namespace game
 
 		{
           m_isBuilding = true;
-    }
+		}
 
 	public:
 		virtual bool update(PlayerState&, PlayerState&, int*, std::shared_ptr<engine::Map>, std::shared_ptr<engine::ObjectManager>)
