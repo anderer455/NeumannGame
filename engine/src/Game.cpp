@@ -45,9 +45,9 @@ namespace engine
 		auto unit_1 = unitFactory->create(game::ObjectType::Probe, m_gameMap->getTile(1, 2), game::Ownership::Player1);
 		auto unit_3 = unitFactory->create(game::ObjectType::Worker, m_gameMap->getTile(2, 1), game::Ownership::Player1);
 
-		auto building_2 = unitFactory->create(game::ObjectType::SpaceStation, m_gameMap->getTile(48, 48), game::Ownership::Player2);
-		auto unit_2 = unitFactory->create(game::ObjectType::Probe, m_gameMap->getTile(48, 47), game::Ownership::Player2);
-		auto unit_4 = unitFactory->create(game::ObjectType::Worker, m_gameMap->getTile(47, 48), game::Ownership::Player2);
+		auto building_2 = unitFactory->create(game::ObjectType::SpaceStation, m_gameMap->getTile(config->getMapWidth() - 2, config->getMapHeight() - 2), game::Ownership::Player2);
+		auto unit_2 = unitFactory->create(game::ObjectType::Probe, m_gameMap->getTile(config->getMapWidth() - 2, config->getMapHeight() - 3), game::Ownership::Player2);
+		auto unit_4 = unitFactory->create(game::ObjectType::Worker, m_gameMap->getTile(config->getMapWidth() - 3, config->getMapHeight() - 2), game::Ownership::Player2);
     
 		testOM = std::make_shared<engine::ObjectManager>();
 
