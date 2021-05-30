@@ -33,6 +33,7 @@ namespace engine
         }
 
         parseCosts();
+        parseStats();
         
         return true;
     }
@@ -180,9 +181,40 @@ namespace engine
         }
     }
 
-    std::map<std::string, int> JsonParser::GetCost(const std::string& unit)
+    void JsonParser::parseStats()
+    {
+        if (m_gameConfigFile.HasMember("Stats"))
+        {
+            for (auto& c : m_gameConfigFile["Stats"].GetObject())
+            {
+                auto unit_name = c.name.GetString();
+
+                int i = 0;
+                for (auto& m : c.value.GetArray())
+                {
+                    auto value = m.GetInt();
+
+                    if (i == 0) m_stats[unit_name]["hp"] = value;
+                    if (i == 1) m_stats[unit_name]["ms"] = value;
+                    if (i == 2) m_stats[unit_name]["range"] = value;
+                    if (i == 3) m_stats[unit_name]["ad"] = value;
+                    if (i == 4) m_stats[unit_name]["armour"] = value;
+
+                    i += 1;
+                }
+            }
+        }
+    }
+
+    std::map<std::string, int> JsonParser::getCost(const std::string& unit)
     {
         // add check
         return m_costs[unit];
+    }
+
+    std::map<std::string, int> JsonParser::getStats(const std::string& unit)
+    {
+        // add check
+        return m_stats[unit];
     }
 }

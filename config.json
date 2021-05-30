@@ -1,8 +1,8 @@
 {
-	"MapHeight": 100,
-	"MapWidth": 100,
-	"NumberOfPlanets": 5,
-	"MaxRadiusOfPlanet": 3,
+  "MapHeight": 100,
+  "MapWidth": 100,
+  "NumberOfPlanets": 5,
+  "MaxRadiusOfPlanet": 3,
   "TileSize": 50,
   "Textures": {
     "Jupiter": "data/textures/Jupiter.jpg",
@@ -30,5 +30,16 @@
     "MilitaryBase": [ 500, 500, 500 ],
     "AirBase": [ 500, 500, 500 ],
     "SpaceStation": [ 5000, 5000, 5000 ]
+  },
+  "Stats": {
+    "Melee": [ 50, 5, 1, 10, 5 ],
+    "Probe": [ 200, 15, 1, 5, 5 ],
+    "Ranged": [ 50, 5, 5, 10, 2 ],
+    "Worker": [ 25, 5, 1, 1, 1 ],
+    "AirBase": [ 200 ],
+    "MilitaryBase": [ 200 ],
+    "Mine": [ 50 ],
+    "SpaceStation": [ 1000 ],
+    "Tower": [ 100, 0, 5, 10, 10 ]
   }
 }

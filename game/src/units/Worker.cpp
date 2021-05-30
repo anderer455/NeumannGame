@@ -54,7 +54,7 @@ namespace game
 	{
 		if (type == ObjectType::AirBase)
 		{
-			auto cost = engine::config->GetCost("AirBase");
+			auto cost = engine::config->getCost("AirBase");
 
 			if (!playerState1.checkBalance(cost["iron"], cost["copper"], cost["silicon"]))
 			{
@@ -65,7 +65,7 @@ namespace game
 		}
 		else if (type == ObjectType::MilitaryBase)
 		{
-			auto cost = engine::config->GetCost("MilitaryBase");
+			auto cost = engine::config->getCost("MilitaryBase");
 
 			if (!playerState1.checkBalance(cost["iron"], cost["copper"], cost["silicon"]))
 			{
@@ -76,7 +76,7 @@ namespace game
 		}
 		else if (type == ObjectType::Tower)
 		{
-			auto cost = engine::config->GetCost("Tower");
+			auto cost = engine::config->getCost("Tower");
 
 			if (!playerState1.checkBalance(cost["iron"], cost["copper"], cost["silicon"]))
 			{
@@ -87,7 +87,7 @@ namespace game
 		}
 		else if (type == ObjectType::Mine)
 		{
-			auto cost = engine::config->GetCost("Mine");
+			auto cost = engine::config->getCost("Mine");
 
 			if (!playerState1.checkBalance(cost["iron"], cost["copper"], cost["silicon"]))
 			{
@@ -98,7 +98,7 @@ namespace game
 		}
 		else if (type == ObjectType::SpaceStation)
 		{
-			auto cost = engine::config->GetCost("SpaceStation");
+			auto cost = engine::config->getCost("SpaceStation");
 
 			if (!playerState1.checkBalance(cost["iron"], cost["copper"], cost["silicon"]))
 			{

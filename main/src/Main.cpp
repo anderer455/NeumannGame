@@ -13,7 +13,6 @@ int main(void)
 
 		//----------RENDER----------//
 		game.render();
-
 	}
 	//End of application
 	return 0;

@@ -21,37 +21,57 @@ namespace engine
         switch (objType)
         {
         case game::ObjectType::Melee:
-            return std::make_shared<game::Melee>(game::Melee(50, objType, *textures->getTexture("Melee"), location, 5, 1, 10, 5, owner));
+        {
+            auto stats = config->getStats("Melee");
+            return std::make_shared<game::Melee>(game::Melee(stats["hp"], objType, *textures->getTexture("Melee"), location, stats["ms"], stats["range"], stats["ad"], stats["armour"], owner));
+        }
         case game::ObjectType::Probe:
-            return std::make_shared<game::Probe>(game::Probe(200, objType, *textures->getTexture("Probe"), location, 15, 1, 5, 5, owner));
+        {
+            auto stats = config->getStats("Probe");
+            return std::make_shared<game::Probe>(game::Probe(stats["hp"], objType, *textures->getTexture("Probe"), location, stats["ms"], stats["range"], stats["ad"], stats["armour"], owner));
+        }
         case game::ObjectType::Ranged:
-            return std::make_shared<game::Ranged>(game::Ranged(50, objType, *textures->getTexture("Ranged"), location, 5, 5, 10, 2, owner));
+        {
+            auto stats = config->getStats("Ranged");
+            return std::make_shared<game::Ranged>(game::Ranged(stats["hp"], objType, *textures->getTexture("Ranged"), location, stats["ms"], stats["range"], stats["ad"], stats["armour"], owner));
+        }
         case game::ObjectType::Worker:
-            return std::make_shared<game::Worker>(game::Worker(25, objType, *textures->getTexture("Worker"), location, 5, 1, 1, 1, owner));
+        {
+            auto stats = config->getStats("Worker");
+            return std::make_shared<game::Worker>(game::Worker(stats["hp"], objType, *textures->getTexture("Worker"), location, stats["ms"], stats["range"], stats["ad"], stats["armour"], owner));
+        }
         case game::ObjectType::AirBase:
         {
             // poznamka:
             // pocet materialov vstupujucich do konstruktorov pre budovy (ktore vedia stavat) oznacuje materialy potrebne na postavenie jednotky
-            auto cost = config->GetCost("Ranged");
-            return std::make_shared<game::AirBase>(game::AirBase(200, objType, *textures->getTexture("AirBase"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
+            auto cost = config->getCost("Ranged");
+            auto stats = config->getStats("AirBase");
+            return std::make_shared<game::AirBase>(game::AirBase(stats["hp"], objType, *textures->getTexture("AirBase"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
         }
         case game::ObjectType::MilitaryBase:
         {
-            auto cost = config->GetCost("Melee");
-            return std::make_shared<game::MilitaryBase>(game::MilitaryBase(200, objType, *textures->getTexture("MilitaryBase"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
+            auto cost = config->getCost("Melee");
+            auto stats = config->getStats("MilitaryBase");
+            return std::make_shared<game::MilitaryBase>(game::MilitaryBase(stats["hp"], objType, *textures->getTexture("MilitaryBase"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
         }
         case game::ObjectType::Mine:
         {
-            auto cost = config->GetCost("Mine");
-            return std::make_shared<game::Mine>(game::Mine(50, objType, *textures->getTexture("Mine"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
+            auto cost = config->getCost("Mine");
+            auto stats = config->getStats("Mine");
+            return std::make_shared<game::Mine>(game::Mine(stats["hp"], objType, *textures->getTexture("Mine"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
         }
         case game::ObjectType::SpaceStation:
         {
-            auto cost = config->GetCost("Worker");
-            return std::make_shared<game::SpaceStation>(game::SpaceStation(1000, objType, *textures->getTexture("SpaceStation"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
+            auto cost = config->getCost("Worker");
+            auto stats = config->getStats("SpaceStation");
+            return std::make_shared<game::SpaceStation>(game::SpaceStation(stats["hp"], objType, *textures->getTexture("SpaceStation"), location, cost["iron"], cost["copper"], cost["silicon"], owner));
         }
         case game::ObjectType::Tower:
-            return std::make_shared<game::Tower>(game::Tower(100, objType, *textures->getTexture("Tower"), location, 0, 5, 10, 10, 1000, 1000, 1000, owner));
+        {
+            auto cost = config->getCost("Tower");
+            auto stats = config->getStats("Tower");
+            return std::make_shared<game::Tower>(game::Tower(stats["hp"], objType, *textures->getTexture("Tower"), location, stats["ms"], stats["range"], stats["ad"], stats["armour"], cost["iron"], cost["copper"], cost["silicon"], owner));
+        }
         default:
             throw "Invalid object!";
         }

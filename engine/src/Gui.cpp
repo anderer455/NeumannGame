@@ -69,7 +69,7 @@ namespace engine
 	{
 		if (unit->getType() != game::ObjectType::Tower && unit->getType() != game::ObjectType::Mine)
 		{
-			auto cost = config->GetCost(unit->getBuildUnitName());
+			auto cost = config->getCost(unit->getBuildUnitName());
 			return "(" + unit->getBuildUnitName() + " - " + std::to_string(cost["iron"]) + "/" + std::to_string(cost["copper"]) + "/" + std::to_string(cost["silicon"]) + ")";
 		}
 		else return "";
@@ -77,7 +77,7 @@ namespace engine
 
 	std::string Gui::CreateBuildingCostString(const std::string& unit) const
 	{
-		auto cost = config->GetCost(unit);
+		auto cost = config->getCost(unit);
 		return "(" + std::to_string(cost["iron"]) + "/" + std::to_string(cost["copper"]) + "/" + std::to_string(cost["silicon"]) + ")";
 	}
 
